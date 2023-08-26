@@ -1,0 +1,85 @@
+=============================Login============================================
+$ ssh -i ec2-udacity.pem ubuntu@54.146.26.150
+load pubkey "ec2-udacity.pem": invalid format
+The authenticity of host '54.146.26.150 (54.146.26.150)' can't be established.
+ECDSA key fingerprint is SHA256:OdIFspORcgo6id05XqCaqYu0G3XbeL9PgckWbvr8+fw.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '54.146.26.150' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.19.0-1025-aws x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Wed Aug 23 05:29:26 UTC 2023
+
+  System load:  0.0               Processes:             95
+  Usage of /:   21.8% of 7.57GB   Users logged in:       0
+  Memory usage: 25%               IPv4 address for eth0: 172.31.37.63
+  Swap usage:   0%
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Tue Aug 22 15:12:29 2023 from 18.206.107.28
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+=============================Login mysql===========================================
+ubuntu@ip-172-31-37-63:~$ mysql -u admin -h udacity.citdgufjxkir.us-east-1.rds.amazonaws.com -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.33 Source distribution
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+=================================Create table===================================
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> create database example;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use example;
+mysql> create table comments (user_id int, content varchar(255));
+Query OK, 0 rows affected (0.04 sec)
+=================================Insert data==================================
+mysql> insert into comments (user_id, content) values (1, "comment 1");
+Query OK, 1 row affected (0.01 sec)
+
+=================================Get data==================================
+mysql> select * from comments;
++---------+-----------+
+| user_id | content   |
++---------+-----------+
+|       1 | comment 1 |
++---------+-----------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
