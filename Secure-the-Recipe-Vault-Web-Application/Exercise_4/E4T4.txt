@@ -1,0 +1,20 @@
+# What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+
+- Utilize CloudFront as a front-end caching and content delivery service in front of the load balancer. By leveraging CloudFront, you can benefit from its caching capabilities, which help improve performance and reduce the load on your infrastructure. Additionally, CloudFront acts as a shield, providing an additional layer of protection by acting as a buffer between the internet and your load balancer, helping to mitigate potential attacks.
+- Implement a rule that restricts SSH access to instances only through AWS Systems Manager. By enforcing SSH access through AWS Systems Manager, you remove direct external access to the instances. This architectural change adds an extra layer of security by centralizing and controlling SSH access, allowing you to monitor and manage access more effectively. It also helps to prevent unauthorized SSH access attempts from the internet, reducing the risk of brute force attacks.
+By implementing these changes, you can strengthen the security of your environment, reduce the attack surface, and improve the overall performance and management of your infrastructure.
+# Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+No, creating VPC private endpoints for S3 would not prevent unauthorized access to the secrets bucket if the IAM permissions for the bucket are still insecure.
+
+VPC private endpoints establish a private connection between your VPC and S3, ensuring that traffic between them remains within the AWS network and does not traverse the public internet. This helps to enhance the security and privacy of data in transit.
+
+However, VPC private endpoints alone do not control access to S3 resources. They only provide a secure and private pathway for communication between your VPC and S3. If the IAM permissions for the secrets bucket are insecure, meaning they grant excessive or unnecessary permissions, unauthorized users or entities could still gain access to the bucket through other means, such as compromised IAM credentials.
+
+To prevent unauthorized access to the secrets bucket, it is crucial to address the insecure IAM permissions by properly configuring access policies and granting least privilege permissions to authorized entities. By implementing secure IAM policies alongside VPC private endpoints, you can create a more robust security posture and minimize the risk of unauthorized access to sensitive data.
+# Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+No, applying default encryption settings to S3 buckets will not automatically encrypt the data that already exists in the buckets.
+
+When you enable default encryption settings for an S3 bucket, it only applies to new objects that are uploaded to the bucket. Any existing objects in the bucket will remain unencrypted unless you explicitly encrypt them.
+# What would happen if the original cloud formation templates are applied to this environment.
+- If the original CloudFormation templates are applied to the environment after making direct configuration changes through the AWS Management Console, it will result in a reset of the environment.
+- The CloudFormation templates define the desired state of the infrastructure. When applied, they will overwrite the current configuration, including any changes made directly through the console, with the configuration specified in the templates. Care should be taken to ensure that the CloudFormation templates are up to date and reflect the desired configuration to avoid unintended changes and disruptions to the environment.

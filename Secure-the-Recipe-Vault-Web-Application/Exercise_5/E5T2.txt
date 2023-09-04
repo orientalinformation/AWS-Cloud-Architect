@@ -1,0 +1,23 @@
+Tools for Scanning Infrastructure as Code Templates:
+- Terraform Compliance:Terraform Compliance is an open-source tool that allows you to write security and compliance policies as code and then scan your Terraform templates against those policies. It helps you identify any security vulnerabilities or misconfigurations in your infrastructure code.
+- Checkov: A tool for enforcing infrastructure as code security policies. It scans Terraform, CloudFormation, and Kubernetes files for misconfigurations and policy violations. (Link: https://github.com/bridgecrewio/checkov).
+- Terrascan: Terrascan is a specialized tool that focuses on scanning Terraform templates. It performs thorough analysis of Infrastructure as Code (IaC) files to identify potential security vulnerabilities and compliance violations. By utilizing Terrascan, you can proactively detect and address any security issues present in your Terraform configurations. (Link: https://github.com/accurics/terrascan)
+- Bridgecrew: Bridgecrew can also analyze your cloud infrastructure configurations, including security groups, IAM policies, and more. It provides a centralized dashboard to view and manage security findings across your cloud accounts. (Link: https://github.com/bridgecrewio)
+Example:
+- Access logs not enabled for resources: This vulnerability implies that access logs, which provide valuable audit information, are not enabled for the relevant resources, hindering incident response and investigation.
+- Lack of Monitoring and Logging: If the IaC template does not include proper monitoring and logging configurations, it becomes difficult to detect and respond to security incidents or anomalies in the infrastructure.
+
+Tools for Scanning AMIs or Containers for OS Vulnerabilities:
+- Amazon Inspector: Amazon Inspector is an AWS service that helps you assess the security and compliance of your applications and infrastructure. It includes a feature called "Amazon Inspector Agent" that can be installed on your AMIs or containers to perform vulnerability assessments. It scans for common vulnerabilities and exposures (CVEs) and provides detailed findings and recommendations.
+- Ansible: Ansible can be used to automate the scanning of AMIs or containers for OS vulnerabilities by running security-focused modules and playbooks against them.
+Example:
+- SSH root access with password logon: This vulnerability indicates that the root user can access the system using a password for SSH authentication, which poses a security risk. It is recommended to disable root login or enforce key-based authentication.
+
+Tools for Scanning AWS Environment for Cloud Configuration Vulnerabilities:
+- AWS Config: It continuously assesses AWS resource configurations against desired rules to identify non-compliant resources and configuration vulnerabilities.
+- AWS Inspector: It analyzes the AWS environment and provides insights into the vulnerability and security posture of EC2 instances, applications, and networks.
+- AWS GuardDuty: A threat detection service that analyzes AWS logs and events to detect unauthorized access, malicious activities, and potential security threats.
+Example:
+- IAM role assigned a policy that allows admin access: This vulnerability suggests that an IAM role has been granted excessive privileges, potentially leading to unauthorized access and compromise of AWS resources.
+- s3-bucket-server-side-encryption: This vulnerability indicates that server-side encryption is not enabled for an S3 bucket, leaving the data stored in the bucket unprotected.
+- UnauthorizedAccess:EC2/SSHBruteForce: This finding indicates that an EC2 instance is being targeted by SSH brute force attacks, which can lead to unauthorized access and compromise of the instance.

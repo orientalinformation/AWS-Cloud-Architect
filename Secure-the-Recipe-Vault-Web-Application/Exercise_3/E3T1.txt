@@ -1,0 +1,15 @@
+# Describe GuardDuty findings that were detected related to the brute force attack
+AWS GuardDuty is a service designed to detect threats by continuously monitoring your AWS environment for any signs of malicious activities or unauthorized behavior. In the specific case of a finding related to a brute force attack, GuardDuty analyzed the SSH activity and detected suspicious patterns that strongly indicated an ongoing brute force attack.
+
+To identify and detect this type of attack, GuardDuty utilizes a combination of data sources and analysis techniques. These include:
+	- VPC Flow Logs: GuardDuty examines the network traffic flow logs produced by VPCs to analyze and identify potential brute force attacks. By examining the source and destination IP addresses, ports, and protocols, GuardDuty can detect abnormal SSH connection attempts and patterns that may indicate brute force attacks.
+	- DNS Logs: GuardDuty analyzes DNS logs to identify DNS queries linked to known malicious domains or IP addresses. This enables the detection of potential command and control servers or compromised systems that may be involved in the attack.
+	- AWS CloudTrail Logs: GuardDuty utilizes CloudTrail logs to collect valuable information regarding API calls and activity related to AWS resources. When it comes to brute force attacks, GuardDuty can examine SSH-related API calls to identify any signs of suspicious authentication failures or repeated login attempts. This analysis helps in detecting and mitigating potential brute force attacks.
+	- Threat Intelligence Feeds: GuardDuty integrates threat intelligence feeds from multiple sources, including internal AWS sources, partner feeds, and open-source intelligence. By cross-referencing the observed SSH activity with known indicators of compromise (IOCs), GuardDuty can effectively identify and highlight potential brute force attacks. This correlation of data helps enhance the detection capabilities and strengthens the overall security posture.
+
+# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html
+In the particular instance of the brute force attack finding you mentioned, GuardDuty observed a recurring pattern of SSH login attempts from the IP address 10.192.10.75 to the targeted EC2 instance with the ID i-0ca8a7245eb78e8cc. Through the analysis of SSH traffic patterns, authentication failures, and the frequency of login attempts, GuardDuty successfully recognized this activity as a brute force attack.
+
+By constantly monitoring and analyzing network and log data, GuardDuty offers real-time alerts and findings that assist in identifying and addressing potential security threats within your AWS environment. This proactive approach enables you to promptly respond to and mitigate any security risks that may arise.
+Refer: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html

@@ -1,0 +1,43 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+The IAM policy does not follow the principle of least privilege, allowing full access to resources.
+- Vulnerability Analysis:
+	The presence of this vulnerability suggests that the IAM policies in use are excessively permissive, providing more privileges than are actually required for performing specific actions. This situation raises the risk of unauthorized access or unintentional misuse of resources within the AWS environment.
+- Recommendations for Remediation:
+	To mitigate this vulnerability, it is essential to review and refine the IAM policies to ensure they grant only the necessary permissions for each user or role. By following the principle of least privilege, where users are granted only the minimum privileges needed to perform their tasks, the risk of unauthorized access or accidental misuse can be significantly reduced.
+
+The enforcement of using a non-root account is not required.
+- Vulnerability Analysis:
+	This vulnerability indicates that the AWS root account, which possesses unrestricted access and control over the entire AWS environment, is being utilized instead of implementing separate user accounts with restricted privileges. This practice raises the likelihood of unauthorized access and compromises the overall security of the environment. 
+- Recommendations for Remediation:
+	To mitigate this vulnerability, it is recommended to follow the principle of least privilege and create individual IAM user accounts with appropriate permissions, thereby reducing the risk of unauthorized access and enhancing the overall security posture.
+
+The Load Balancer lacks the configuration for redirecting HTTP traffic to HTTPS.
+- Vulnerability Analysis:
+	This vulnerability suggests that the load balancer is not properly configured to redirect HTTP requests to HTTPS. The absence of this redirection exposes sensitive data transmitted over HTTP to potential interception and attacks.
+- Recommendations for Remediation:
+	To address this vulnerability, it is crucial to configure the load balancer to automatically redirect all incoming HTTP requests to HTTPS, ensuring the secure transmission of sensitive information and enhancing the overall security of the system.
+
+The CloudTrail Trail has not been specified.
+- Vulnerability Analysis:
+	This vulnerability refers to the lack of configuration for CloudTrail, a service that offers auditing and monitoring features for AWS API activity. Without proper configuration of CloudTrail, it becomes difficult to track and investigate security incidents, which could make the environment more susceptible to unauthorized actions and compromises.
+- Recommendations for Remediation:
+	To enhance monitoring and auditing capabilities, set up a CloudTrail trail that securely captures AWS API activity logs and stores them in an S3 bucket. Make sure to configure the trail with appropriate settings such as log file integrity validation and log file encryption.
+
+The current configuration of the VPC Security Groups allows unrestricted inbound and outbound traffic.
+- Vulnerability Analysis:
+	This vulnerability indicates that the security groups assigned to the Virtual Private Cloud (VPC) are set to allow unrestricted inbound and outbound traffic. This violates the principle of least privilege and expands the potential attack surface, making it simpler for unauthorized entities to gain access to the resources.
+- Recommendations for Remediation:
+	To adhere to the principle of least privilege, it is recommended to update the VPC Security Group rules. This involves restricting inbound and outbound traffic to only the necessary ports, such as port 80 for HTTP and port 443 for HTTPS. Additionally, it is advisable to reference other security groups instead of allowing all traffic. It is important to regularly review and update the security group rules to ensure they align with the organization's specific security requirements.
+
+The S3 buckets currently do not have server-side encryption and logging enabled.
+- Vulnerability Analysis:
+	This vulnerability indicates that the S3 buckets storing data lack server-side encryption and logging. Without server-side encryption, sensitive data becomes susceptible to unauthorized access. Additionally, the absence of logging makes it challenging to track access, changes, and potential security incidents.
+- Recommendations for Remediation:
+	To enhance the security and auditability of data stored in S3 buckets, it is recommended to enable server-side encryption and configure it to enforce encryption on new objects. Additionally, enabling S3 bucket logging will allow for tracking access and changes to objects stored in the bucket.
+
+The EC2 instance has TCP port 5000 accessible from the internet.
+- Vulnerability Analysis:
+	This vulnerability indicates that the EC2 instance has an open TCP port (port 5000) that can be accessed from the internet. Open ports can pose a risk as they can expose services and applications to potential attacks if they are not adequately secured and monitored.
+- Recommendations for Remediation:
+	To minimize the potential entry points for attackers, it is recommended to disable all non-essential ports on the EC2 instance. Specifically, if port 5000 is not required for any specific service, it should be closed. This action helps reduce the attack surface and enhances the security of the system.
